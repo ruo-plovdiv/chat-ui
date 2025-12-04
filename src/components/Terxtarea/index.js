@@ -1,7 +1,7 @@
 import { IoSend } from "react-icons/io5";
 
 const Textarea = ({ value, onChange, placeholder }) => {
-    return <div className="textarea">
+    return <div className="textarea mt-5">
         <form>
             <div className="d-flex align-items-end">
                 <textarea className="form-control" rows="3"></textarea>
