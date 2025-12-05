@@ -4,6 +4,8 @@ import Textarea from './components/Terxtarea';
 import api from './api/api';
 import { useEffect, useState } from 'react';
 import Skeleton from './components/Skeleton';
+import { TypeAnimation } from 'react-type-animation';
+
 
 
 
@@ -20,7 +22,7 @@ const App = () => {
   return (
     <div className="App container mt-5">
       <Header />
-      {loading ? <Skeleton /> : <p>{data}</p>}
+      {loading ? <Skeleton /> : <p>{data && <TypeAnimation sequence={[data, ]} wrapper="span" speed={50} repeat={0} />}</p>}
       <Textarea />
     </div>
   );
