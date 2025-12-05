@@ -7,6 +7,7 @@ const App = () => {
   return (
     <div className="App container mt-5">
       <Header />
+      
       <Textarea />
     </div>
   );

@@ -5,8 +5,8 @@ const Textarea = ({ value, onChange, placeholder }) => {
         <form>
             <div className="d-flex align-items-end">
                 <textarea className="form-control" rows="3"></textarea>
-                <button className="btn pb-0 mb-0">
-                    <IoSend />
+                <button className="btn btn-dark d-flex align-items-center ms-3" type="submit">
+                    <IoSend className="fs-5" />
                 </button>
             </div>
         </form>
