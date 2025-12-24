@@ -16,7 +16,8 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getData().then((res) => setData(res)).catch((err) => console.log(err)).finally(() => setLoading(false));
+    getData('началник').then((res) => setData(res)).catch((err) => console.log(err)).finally(() => setLoading(false));
+    console.log('fetching data...', data);
   }, []);
 
   return (

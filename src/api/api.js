@@ -1,7 +1,7 @@
 
-const api = () => {
+const api = (param) => {
   const data = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+    const response = await fetch('http://localhost:8000/search-ollama?q=' + param);
     const result = await response.json();
     return result.body;
   }
