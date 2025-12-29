@@ -1,7 +1,6 @@
 import './App.css';
 import Header from './components/Header';
 import Textarea from './components/Terxtarea';
-import api from './api/api';
 import { useState } from 'react';
 import Skeleton from './components/Skeleton';
 import { TypeAnimation } from 'react-type-animation';
@@ -10,7 +9,6 @@ import { TypeAnimation } from 'react-type-animation';
 
 
 const App = () => {
-  const getData = api();
 
   const [data, setData] = useState([]);
   const [value, setValue] = useState('');
@@ -27,7 +25,6 @@ const App = () => {
       .then((response) => response.json())
       .then((result) => {
         setData((prevData) => [...prevData, result.answer]);
-        console.log('response:', result);
       })
       .catch((error) => console.error('Error fetching data:', error))
       .finally(() => {
