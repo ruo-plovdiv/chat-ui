@@ -2,11 +2,8 @@ import './App.css';
 import Header from './components/Header';
 import Textarea from './components/Terxtarea';
 import { useState } from 'react';
-import Skeleton from './components/Skeleton';
 import { TypeAnimation } from 'react-type-animation';
-
-
-
+import Loader from './components/Loader/Loader';
 
 const App = () => {
 
@@ -38,11 +35,11 @@ const App = () => {
       <Header />
       <>
         {data && data.length > 0 && data.slice(0, -1).map((item, idx) => (
-          <p key={`answer-${idx}`}>{item}</p>
+          idx === data.length - 2 ? null : <p key={`answer-${idx}`}>{item}</p>
         ))}
 
         {loading ? (
-          <Skeleton />
+          <Loader />
         ) : (
           data && data.length > 0 ? (
             <TypeAnimation
@@ -55,7 +52,6 @@ const App = () => {
           ) : null
         )}
       </>
-
      
       <Textarea
         submit={onSubmitHandler}
@@ -63,7 +59,7 @@ const App = () => {
         value={value}
         onChange={handleChange}
       />
-    </div>
+      </div>
   );
 }
 
