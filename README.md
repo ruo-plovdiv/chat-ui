@@ -20,6 +20,7 @@ sudo apt install nodejs npm -y
 
 ```bash
 git clone https://github.com/ruo-plovdiv/chat-ui.git
+cd chat-ui
 ```
 
 ## 3. Инсталиране на зависимостите
