@@ -48,10 +48,10 @@ const App = () => {
           {conversation.map((item, index) => (
             <div 
               key={index} 
-              className={`message mb-3 ${item.type} ${index === conversation.length - 1 && item.type === 'answer' ? 'last-answer' : ''}`}
+              className={`message ${item.type} ${index === conversation.length - 1 && item.type === 'answer' ? 'last-answer' : ''}`}
             >
               <div className="message-content">
-                <strong className="mb-3">{item.type === 'question' ? 'Въпрос: ' : 'Отговор: '}</strong>
+                <strong className={`${item.type === 'question' ? 'd-block mt-3' : 'mt-1 d-block '}`}>{item.type === 'question' ? 'Въпрос: ' : 'Отговор: '}</strong>
                 {item.type === 'answer' && index === conversation.length - 1 && !loading ? (
                   <p>
                     <TypeAnimation
