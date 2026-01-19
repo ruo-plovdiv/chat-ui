@@ -6,8 +6,7 @@ import { TypeAnimation } from 'react-type-animation';
 import Loader from './components/Loader/Loader';
 
 const App = () => {
-
-  const [data, setData] = useState([]);
+  const [conversation, setConversation] = useState([]);
   const [value, setValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -17,14 +16,23 @@ const App = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (!value.trim()) return;
+    
     setLoading(true);
-
-    fetch('http://localhost:8000/search-ollama?q=' + encodeURIComponent(value))
+    setDisabled(true);
+    
+    // Add user's question to the conversation
+    const userQuestion = value;
+    setConversation(prev => [...prev, { type: 'question', content: userQuestion }]);
+    
+    fetch('http://localhost:8000/search-ollama?q=' + encodeURIComponent(userQuestion))
       .then((response) => response.json())
       .then((result) => {
-        setData((prevData) => [...prevData, result.answer]);
+        setConversation(prev => [...prev, { type: 'answer', content: result.answer }]);
       })
-      .catch((error) => console.error('Error fetching data:', error))
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+        setConversation(prev => [...prev, { type: 'answer', content: 'Грешка при извличане на отговор.' }]);
+      })
       .finally(() => {
         setDisabled(false);
         setLoading(false);
@@ -34,36 +42,43 @@ const App = () => {
 
   return (
     <div className="App container mt-5">
-        <Header />
-          <div className="col-md-10 mx-auto">
-          <>
-            {data && data.length > 0 && data.slice(0, -1).map((item, idx) => (
-              idx === data.length - 2 ? null : <p key={`answer-${idx}`}>{item}</p>
-            ))}
-
-            {loading ? (
-              <Loader />
-            ) : (
-              data && data.length > 0 ? (
-                <TypeAnimation
-                  sequence={[data[data.length - 1]]}
-                  wrapper="p"
-                  speed={50}
-                  repeat={0}
-                  key={`type-${data.length}`}
-                />
-              ) : null
-            )}
-          </>
-        
-          <Textarea
-            submit={onSubmitHandler}
-            placeholder="Напиши съобщение..."
-            value={value}
-            onChange={handleChange}
-          />
+      <Header />
+      <div className="col-md-10 mx-auto">
+        <div className="conversation-container mb-4">
+          {conversation.map((item, index) => (
+            <div 
+              key={index} 
+              className={`message mb-3 ${item.type} ${index === conversation.length - 1 && item.type === 'answer' ? 'last-answer' : ''}`}
+            >
+              <div className="message-content">
+                <strong className="mb-3">{item.type === 'question' ? 'Въпрос: ' : 'Отговор: '}</strong>
+                {item.type === 'answer' && index === conversation.length - 1 && !loading ? (
+                  <p>
+                    <TypeAnimation
+                    sequence={[item.content]}
+                    wrapper="span"
+                    speed={50}
+                    repeat={0}
+                  />
+                  </p>
+                ) : (
+                  item.content
+                )}
+              </div>
+            </div>
+          ))}
+          {loading && <Loader />}
         </div>
+        
+        <Textarea
+          submit={onSubmitHandler}
+          placeholder="Напиши съобщение..."
+          value={value}
+          onChange={handleChange}
+          disabled={disabled}
+        />
       </div>
+    </div>
   );
 }
 
