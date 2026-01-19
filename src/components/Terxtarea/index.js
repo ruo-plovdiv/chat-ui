@@ -2,7 +2,7 @@ import { IoSend } from "react-icons/io5";
 
 const Textarea = ({ submit, placeholder, value, onChange }) => {
   return (
-    <div className="textarea mt-5 col-md-8 mx-auto">
+    <div className="textarea mt-5 mb-5 col-md-8 mx-auto">
       <form onSubmit={submit}>
         <div className="d-flex align-items-end">
           <input
