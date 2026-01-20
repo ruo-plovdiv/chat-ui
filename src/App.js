@@ -45,10 +45,10 @@ const App = () => {
       <Header />
       <div className="col-md-10 mx-auto">
         <div className="conversation-container mb-4">
-        <h3 className='text-muted h5 mb-3'>
+        <h3 className='text-center text-muted h5 mb-3'>
           Моля, задайте въпрос, свързан с административни услуги. Примери:
         </h3>
-        <ul className="list-group mb-5">
+        <ul className="list-group mx-auto mb-5 col-md-8">
           <li className="list-group-item">Признаване на завършен период или клас</li>
           <li className="list-group-item">Заявление за издаване на удостоверение за признаване на завършен период или клас</li>
           <li className="list-group-item">Заявление за издаване на дубликат на удостоверение или уверение за вече признати етапи</li>
