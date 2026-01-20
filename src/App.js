@@ -4,6 +4,7 @@ import Textarea from './components/Terxtarea';
 import { useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import Loader from './components/Loader/Loader';
+import Footer from './components/Footer';
 
 const App = () => {
   const [conversation, setConversation] = useState([]);
@@ -86,6 +87,7 @@ const App = () => {
           disabled={disabled}
         />
       </div>
+      <Footer />
     </div>
   );
 }
