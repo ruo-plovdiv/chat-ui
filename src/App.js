@@ -49,11 +49,11 @@ const App = () => {
         <h3 className='text-center text-muted h5 mb-3'>
           Моля, задайте въпрос, свързан с административни услуги. Примери:
         </h3>
-        <ul className="list-group mb-5">
+        <ol className="list-group list-group-numbered mb-5">
           <li className="list-group-item">Признаване на завършен период или клас</li>
           <li className="list-group-item">Заявление за издаване на удостоверение за признаване на завършен период или клас</li>
           <li className="list-group-item">Заявление за издаване на дубликат на удостоверение или уверение за вече признати етапи</li>
-        </ul>
+        </ol>
           {conversation.map((item, index) => (
             <div 
               key={index} 
