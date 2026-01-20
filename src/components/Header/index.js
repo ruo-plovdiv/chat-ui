@@ -1,8 +1,8 @@
 import './header.css';
 
 const Header = () => {
-    return <div className="header mb-5">
-         <div className="d-flex align-items-center">
+    return <div className="header col-md-6 mx-auto mb-5">
+         <div className="d-flex align-items-center justify-content-center">
                 <img src="./images/logo.webp" alt="лого"/>
                 <div className="d-flex align-items-center flex-wrap ms-3 fs-2">
                     <span className="d-block w-100 fs-3 ">
