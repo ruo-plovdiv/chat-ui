@@ -45,8 +45,8 @@ const App = () => {
       <Header />
       <div className="col-md-10 mx-auto">
         <div className="conversation-container mb-4">
-          <h3 className='text-center text-muted h5 mb-5'>Моля, задайте въпрос за административни услуги</h3>
-          <ul className="list-group">
+          <h3 className='text-muted h5 mb-3'>Моля, задайте въпрос, свързан с административни услуги:</h3>
+          <ul className="list-group mb-5">
             <li className="list-group-item">Признаване на завършен период, клас</li>
             <li className="list-group-item">Заявление за издаване на удостоверение за признаване на завършен период или клас</li>
             <li className="list-group-item">Заявление за издаване на дубликат на удостоверение или уверение за признаване на завършени етапи</li>
