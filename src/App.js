@@ -24,7 +24,7 @@ const App = () => {
     const userQuestion = value;
     setConversation(prev => [...prev, { type: 'question', content: userQuestion }]);
     
-    fetch('http://localhost:8000/search-ollama?q=' + encodeURIComponent(userQuestion))
+    fetch('http://10.254.32.21:8000/search-ollama?q=' + encodeURIComponent(userQuestion))
       .then((response) => response.json())
       .then((result) => {
         setConversation(prev => [...prev, { type: 'answer', content: result.answer }]);
@@ -45,6 +45,12 @@ const App = () => {
       <Header />
       <div className="col-md-10 mx-auto">
         <div className="conversation-container mb-4">
+          <h3 className='text-center text-muted h5 mb-5'>Моля, задайте въпрос за административни услуги</h3>
+          <ul className="list-group">
+            <li className="list-group-item">Признаване на завършен период, клас</li>
+            <li className="list-group-item">Заявление за издаване на удостоверение за признаване на завършен период или клас</li>
+            <li className="list-group-item">Заявление за издаване на дубликат на удостоверение или уверение за признаване на завършени етапи</li>
+          </ul>
           {conversation.map((item, index) => (
             <div 
               key={index} 
