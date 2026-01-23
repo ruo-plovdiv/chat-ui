@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import Loader from './components/Loader/Loader';
 import Footer from './components/Footer';
+import axios from 'axios';
 
 const App = () => {
   const [conversation, setConversation] = useState([]);
@@ -24,17 +25,15 @@ const App = () => {
     // Add user's question to the conversation
     const userQuestion = value;
     setConversation(prev => [...prev, { type: 'question', content: userQuestion }]);
-    
-    fetch('http://10.254.32.21:8000/search-ollama?q=' + encodeURIComponent(userQuestion))
-      .then((response) => response.json())
-      .then((result) => {
-        setConversation(prev => [...prev, { type: 'answer', content: result.answer }]);
-      })
-      .catch((error) => {
+        
+      axios.get('http://10.254.32.200:8000/search-ollama', {
+        params: { q: userQuestion }
+      }).then((response) => {
+        setConversation(prev => [...prev, { type: 'answer', content: response.data.answer }]);
+      }).catch((error) => {
         console.error('Error fetching data:', error);
         setConversation(prev => [...prev, { type: 'answer', content: 'Грешка при извличане на отговор.' }]);
-      })
-      .finally(() => {
+      }).finally(() => {
         setDisabled(false);
         setLoading(false);
         setValue('');
